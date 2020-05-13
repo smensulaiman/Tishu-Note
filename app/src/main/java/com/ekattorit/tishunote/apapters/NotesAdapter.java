@@ -4,15 +4,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ekattorit.tishunote.R;
 import com.ekattorit.tishunote.models.NoteModel;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.row_note_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_dark, parent, false);
         return new ViewHolder(view);
     }
 
@@ -46,23 +48,25 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
         final NoteModel noteModel = noteModels.get(position);
 
-        holder.txtTitle.setText(noteModel.getTitle());
-        holder.btnPreview.setOnClickListener(new View.OnClickListener() {
+        holder.txtName.setText(noteModel.getName());
+        holder.txtDescription.setText(noteModel.getDescription());
+        holder.txtCount.setText(noteModel.getCount());
+
+        holder.btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(notesAdapterListener != null){
-                    notesAdapterListener.onItemClick(position);
+                if (notesAdapterListener != null) {
+                    notesAdapterListener.onItemDelete(position);
                 }
             }
         });
 
-        holder.cardRow.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.btnTap.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
-
-                Toast.makeText(context, "Long Pressed", Toast.LENGTH_SHORT).show();
-
-                return false;
+            public void onClick(View v) {
+                if (notesAdapterListener != null) {
+                    notesAdapterListener.onItemClick(position);
+                }
             }
         });
     }
@@ -74,12 +78,18 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.txtTitle)
-        TextView txtTitle;
-        @BindView(R.id.btnPreview)
-        TextView btnPreview;
-        @BindView(R.id.cardRow)
-        CardView cardRow;
+        @BindView(R.id.btnClose)
+        ImageButton btnClose;
+        @BindView(R.id.imgProfile)
+        SimpleDraweeView imgProfile;
+        @BindView(R.id.txtName)
+        TextView txtName;
+        @BindView(R.id.txtDescription)
+        TextView txtDescription;
+        @BindView(R.id.txtCount)
+        TextView txtCount;
+        @BindView(R.id.btnTap)
+        AppCompatButton btnTap;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void execute(Realm bgRealm) {
                             NoteModel noteModel = bgRealm.createObject(NoteModel.class);
-                            noteModel.setTitle(text);
+                            noteModel.setDescription(text);
                             noteModel.setCount(noteModel.getCount()+1);
                         }
                     }, new Realm.Transaction.OnSuccess() {

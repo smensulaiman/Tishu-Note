@@ -9,19 +9,30 @@ import io.realm.annotations.PrimaryKey;
 public class NoteModel extends RealmObject implements Parcelable {
 
     @PrimaryKey
-    private String title;
+    private String name;
+    private String description;
     private int count;
+    private int target;
+    private int date;
     private boolean isVisible;
 
     public NoteModel() {
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getCount() {
@@ -30,6 +41,22 @@ public class NoteModel extends RealmObject implements Parcelable {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public int getTarget() {
+        return target;
+    }
+
+    public void setTarget(int target) {
+        this.target = target;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
     }
 
     public boolean isVisible() {
@@ -45,15 +72,21 @@ public class NoteModel extends RealmObject implements Parcelable {
     }
 
     protected NoteModel(Parcel in) {
-        title = in.readString();
+        name = in.readString();
+        description = in.readString();
         count = in.readInt();
+        target = in.readInt();
+        date = in.readInt();
         isVisible = in.readByte() != 0;
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(title);
+        dest.writeString(name);
+        dest.writeString(description);
         dest.writeInt(count);
+        dest.writeInt(target);
+        dest.writeInt(date);
         dest.writeByte((byte) (isVisible ? 1 : 0));
     }
 
