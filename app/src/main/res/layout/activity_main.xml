@@ -13,9 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/row_note_item"
-        tools:itemCount="3"
-        android:layout_margin="10dp"/>
+        tools:listitem="@layout/dialog_dark"
+        tools:itemCount="4"
+        app:spanCount="2"
+        android:layout_margin="5dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAdd"

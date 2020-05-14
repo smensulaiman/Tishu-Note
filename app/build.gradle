@@ -11,12 +11,17 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        setProperty("archivesBaseName", applicationId + "-v" + versionCode + "(" + versionName + ")")
     }
 
     buildTypes {
         release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -47,20 +52,5 @@ dependencies {
 
     //Lottie
     implementation 'com.airbnb.android:lottie:3.4.0'
-
-    //Spot Dialog
-    implementation 'com.github.d-max:spots-dialog:0.7@aar'
-
-    //Fresco
-    implementation 'com.facebook.fresco:fresco:2.0.0'
-
-    //Calligraphy
-    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
-
-    //Ken Burns View
-    implementation 'com.flaviofaria:kenburnsview:1.0.7'
-
-    //Circle Indicator
-    implementation 'me.relex:circleindicator:2.1.4'
-
+    
 }

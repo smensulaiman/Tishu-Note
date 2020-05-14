@@ -4,16 +4,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 
 public class NoteModel extends RealmObject implements Parcelable {
 
-    @PrimaryKey
     private String name;
     private String description;
     private int count;
     private int target;
-    private int date;
+    private String date;
     private boolean isVisible;
 
     public NoteModel() {
@@ -51,11 +49,11 @@ public class NoteModel extends RealmObject implements Parcelable {
         this.target = target;
     }
 
-    public int getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -76,7 +74,7 @@ public class NoteModel extends RealmObject implements Parcelable {
         description = in.readString();
         count = in.readInt();
         target = in.readInt();
-        date = in.readInt();
+        date = in.readString();
         isVisible = in.readByte() != 0;
     }
 
@@ -86,7 +84,7 @@ public class NoteModel extends RealmObject implements Parcelable {
         dest.writeString(description);
         dest.writeInt(count);
         dest.writeInt(target);
-        dest.writeInt(date);
+        dest.writeString(date);
         dest.writeByte((byte) (isVisible ? 1 : 0));
     }
 

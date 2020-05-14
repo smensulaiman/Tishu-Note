@@ -2,7 +2,6 @@ package com.ekattorit.tishunote;
 
 import android.app.Application;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -18,6 +17,5 @@ public class MyApplication extends Application {
                 .build();
         Realm.setDefaultConfiguration(config);
 
-        Fresco.initialize(this);
     }
 }
